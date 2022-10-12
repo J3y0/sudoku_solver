@@ -137,26 +137,37 @@ def recurse_solve(grid):
 
 
 if __name__ == "__main__":
-    grid = init_grid()
+#     grid = init_grid()
     possibilities = init_possibilities()
-    grid[0][0] = 5
-    grid[0][2] = 1
-    grid[0][3] = 2
-    grid[0][4] = 3
-    grid[0][5] = 4
-    grid[0][6] = 7
-    grid[0][7] = 8
-    grid[0][8] = 9
-    grid[4][2] = 4
-    grid[6][6] = 8
+    grid = [  [8,7,0,0,0,6,3,0,0],
+            [0,4,0,8,0,1,0,0,0],
+            [2,5,0,4,0,0,8,0,1],
+            [1,0,0,0,0,0,0,0,9],
+            [0,9,0,0,0,4,0,6,0],
+            [7,6,0,0,0,0,0,0,8],
+            [0,0,3,0,9,7,0,0,4],
+            [0,2,0,0,6,0,0,1,0],
+            [0,0,0,3,4,0,6,0,0]]
+
     print_grid(grid)
     
-    
-    columns(grid, possibilities)
-    lines(grid, possibilities)
-    block(grid, possibilities)
-    fill(grid, possibilities)
+    finished = False
+    while not finished:
+        columns(grid, possibilities)
+        lines(grid, possibilities)
+        block(grid, possibilities)
+        fill(grid, possibilities)
+
+        for i in range(WIDTH):
+            if 0 in grid[i]:
+                finished = False
+                break
+            else:
+                finished = True
+
+    print("\n\n")
     print_grid(grid)
+
 
 
     # Objective: coding an optimized algorithm
